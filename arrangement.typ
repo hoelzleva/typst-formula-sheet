@@ -13,7 +13,7 @@
       stack-section-vertical(
         ratios: (1fr, auto),
         stack-section-horizontal(
-          ratios: (3fr, 3fr, 3fr),
+          ratios: (1fr, 1fr, 1fr, 1fr),
           stack-section-vertical(
             ratios: (1fr, auto),
             lineare_regression,
@@ -34,6 +34,13 @@
             modell_evaluation,
             entscheidungsbaeume,
             pca,
+            //insert more content blocks here
+          ),
+          stack-section-vertical(
+            ratios: (1fr, auto),
+            lineare_regression,
+            gradient_descent,
+            logistische_regression,
             //insert more content blocks here
           ),
         ),
