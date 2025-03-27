@@ -38,9 +38,6 @@
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
-            lineare_regression,
-            gradient_descent,
-            logistische_regression,
             //insert more content blocks here
           ),
         ),

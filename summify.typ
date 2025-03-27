@@ -70,12 +70,12 @@
 // -----------------------------------------------------------------------------
 
 // Creates a header for subsections with consistent styling
-#let section-header(title, color: gray) = {
+#let section-header(title: none, color: gray) = {
   align(
     top,
     box(
       width: 100%,
-      fill: color,
+      fill: color, // Use the color parameter here
       stroke: (x: 0pt, y: 1pt),
       height: _state-sf-theme.get().spacing.header-height,
       inset: 0mm,
@@ -97,15 +97,14 @@
     horizon,
     (
       context if _state-sf-hide-content.get() [
-        #if title != none and color != none { section-header(title, color) }
-        #if title != none { section-header(title, color) }
+        #if title != none { section-header(title, color) } // Pass color here
         #v(0mm, weak: true)
         #hide(box(inset: inset, width: 100%, body))
         #v(0mm, weak: true)
       ] else [
         #if title != none { }
         #if color != none { }
-        #section-header(title)
+        #section-header(title: title, color: color)
         #v(0mm, weak: true)
         #box(inset: inset, width: 100%, body)
         #v(0mm, weak: true)
