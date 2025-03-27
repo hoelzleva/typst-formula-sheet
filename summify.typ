@@ -75,7 +75,7 @@
     top,
     box(
       width: 100%,
-      fill: color, // Use the color parameter here
+      fill: color.transparentize(60%), // Use the color parameter here
       stroke: (x: 0pt, y: 1pt),
       height: _state-sf-theme.get().spacing.header-height,
       inset: 0mm,
@@ -106,7 +106,7 @@
         #if color != none { }
         #section-header(title: title, color: color)
         #v(0mm, weak: true)
-        #box(inset: inset, width: 100%, body)
+        #box(inset: inset, width: 100%, body, fill: color.transparentize(90%))
         #v(0mm, weak: true)
       ]
     ),

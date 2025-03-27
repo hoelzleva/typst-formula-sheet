@@ -1,9 +1,6 @@
 #import "summify.typ": *
 
 #let lineare_regression = content-block(title: [Lineare Regression], color: red)[
-  \
-  \
-  \
   Linearer Zusammenhang zwischen den Eingabevariablen x und der Ausgabevariable y wird modelliert.
 
   *Hypothesenfunktion*:\
@@ -24,7 +21,7 @@
 
 ]
 
-#let gradient_descent = content-block(title: [Gradient Descent])[
+#let gradient_descent = content-block(title: [Gradient Descent], color: green)[
 
   *Update-Regel*:\
   $theta_j := theta_j - alpha frac{partial}{partial theta_j} J(theta)$
@@ -38,7 +35,7 @@
 
 ]
 
-#let logistische_regression = content-block(title: [Logistische Regression])[
+#let logistische_regression = content-block(title: [Logistische Regression], color: blue)[
 
   *Sigmoidfunktion*:\
   $g(z) = frac{1}{1 + e^{-z}}$
