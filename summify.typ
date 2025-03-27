@@ -25,7 +25,7 @@
     ),
     font: (
       size: 12pt,
-      family: "New Computer Modern Sans",
+      family: "Fira Sans",
     ),
     spacing: (
       topic-gap: 4mm,
