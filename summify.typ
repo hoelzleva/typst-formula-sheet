@@ -43,7 +43,7 @@
 // Creates a new overview page with customizable layout and styling
 #let summify(
   title: "",
-  paper: "a3",
+  paper: "a4",
   show-grid: false,
   flipped: true,
   hide-content: false,
@@ -54,7 +54,7 @@
     set page(
       paper,
       flipped: flipped,
-      margin: (top: 2cm, x: 1cm, y: 1cm),
+      margin: (top: 1cm, x: 0.5cm, y: 0.5cm),
       header-ascent: 0mm,
       header: [
         #align(center + horizon, text(20pt, weight: "bold", title))

@@ -31,3 +31,49 @@
   zu klein → langsame Konvergenz
 
 ]
+
+#let logistische_regression = content-block(title: [Logistische Regression])[
+
+  *Sigmoidfunktion*:\
+  $g(z) = frac{1}{1 + e^{-z}}$
+
+  *Hypothese*:\
+  $h_theta(x) = g(theta^T x)$
+
+  *Klassifikation*:\
+  $h_theta(x) \ge 0.5 arrow$ Klasse 1\
+  $h_theta(x) < 0.5 arrow$ Klasse 0
+
+  *Entscheidungsgrenze*:\
+  $theta_0 + theta_1 x_1 + theta_2 x_2 = 0$
+
+  *Nicht-linearität* durch Features wie $x_1^2$, $x_1 x_2$, ...
+]
+
+#let regularisierung = content-block(title: [Regularisierung])[
+
+  *Kostenfunktion mit L2-Regularisierung*:\
+  $J(theta) = frac{1}{2n} sum (h_theta(x^{(i)}) - y^{(i)})^2 + lambda sum_{j=1}^d theta_j^2$
+
+  *Effekt von $lambda$*:\
+  • $lambda = 0$ → kein Penalty\
+  • großes $lambda$ → starke Bestrafung, Underfitting
+
+  *Bias-Term $theta_0$ wird oft nicht regularisiert*
+]
+
+#let svm_block = content-block(title: [Support Vector Machines])[
+
+  *Ziel*:\
+  $\min_{w,b} ( frac{1}{2} \|w\|^2 + C sum \xi_i )$
+
+  *Nebenbedingungen*:\
+  $y^{(i)} (w^T x^{(i)} + b) \ge 1 - \xi_i$ mit $\xi_i \ge 0$
+
+  *C kontrolliert Trade-off*:\
+  großes $C$ → weniger Fehler,\
+  kleines $C$ → größerer Margin
+
+  *Kernel-Trick*:\
+  z. B. $K(x, x') = e^{-gamma \|x - x'\|^2}$ (RBF-Kernel)
+]
