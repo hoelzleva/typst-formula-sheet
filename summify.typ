@@ -70,12 +70,12 @@
 // -----------------------------------------------------------------------------
 
 // Creates a header for subsections with consistent styling
-#let section-header(title) = {
+#let section-header(title, color: gray) = {
   align(
     top,
     box(
       width: 100%,
-      fill: _state-sf-theme.get().colors.block.header-background,
+      fill: color,
       stroke: (x: 0pt, y: 1pt),
       height: _state-sf-theme.get().spacing.header-height,
       inset: 0mm,
@@ -92,17 +92,19 @@
 }
 
 // Base box with optional content hiding functionality
-#let content-block(title: none, inset: 2mm, body) = {
+#let content-block(title: none, color: gray, inset: 2mm, body) = {
   align(
     horizon,
     (
       context if _state-sf-hide-content.get() [
-        #if title != none { section-header(title) }
+        #if title != none and color != none { section-header(title, color) }
+        #if title != none { section-header(title, color) }
         #v(0mm, weak: true)
         #hide(box(inset: inset, width: 100%, body))
         #v(0mm, weak: true)
       ] else [
         #if title != none { }
+        #if color != none { }
         #section-header(title)
         #v(0mm, weak: true)
         #box(inset: inset, width: 100%, body)

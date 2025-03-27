@@ -1,6 +1,6 @@
 #import "summify.typ": *
 
-#let lineare_regression = content-block(title: [Lineare Regression])[
+#let lineare_regression = content-block(title: [Lineare Regression], color: red)[
   \
   \
   \
