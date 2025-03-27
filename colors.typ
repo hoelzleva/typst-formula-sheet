@@ -5,5 +5,7 @@
     green: rgb("#2ca02c"),
     orange: rgb("#ff7f0f"),
     purple: rgb("#9367bc"),
-  )
-) 
+  ),
+)
+
+#let green = green.darken(20%)

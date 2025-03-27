@@ -25,10 +25,15 @@
             ratios: (1fr, auto),
             regularisierung,
             svm_block,
+            neuronale_netzwerke,
             //insert more content blocks here
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
+            convolutional_neuronale_netzwerke,
+            modell_evaluation,
+            entscheidungsbaeume,
+            pca,
             //insert more content blocks here
           ),
         ),

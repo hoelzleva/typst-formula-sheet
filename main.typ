@@ -11,9 +11,7 @@
 )
 
 
-#set text(size: 9.5pt)
-#let green = green.darken(20%)
-
+#set text(size: 7pt)
 
 #include "content.typ"
 #include "arrangement.typ"
