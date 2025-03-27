@@ -24,12 +24,12 @@
 #let gradient_descent = content-block(title: [Gradient Descent], color: green)[
 
   *Update-Regel*:\
-  $theta_j := theta_j - alpha frac{partial}{partial theta_j} J(theta)$
+  $theta_j := theta_j - alpha space partial / (partial theta_j) J(theta)$
 
   *Für lineare Regression*:\
-  $theta_j := theta_j + alpha frac{1}{n} sum_{i=1}^n (y^{(i)} - h_theta(x^{(i)})) dot x_j^{(i)}$
+  $theta_j := theta_j + alpha 1 / n sum_(i=1)^n (y^(\(i\)) - h_theta (x^(\(i\)))) dot x_j^(\(i\))$
 
-  *Lernrate* $alpha$:\
+  *Lernrate $alpha$*:\
   Zu groß → Divergenz,\
   zu klein → langsame Konvergenz
 
@@ -38,25 +38,26 @@
 #let logistische_regression = content-block(title: [Logistische Regression], color: blue)[
 
   *Sigmoidfunktion*:\
-  $g(z) = frac{1}{1 + e^{-z}}$
+  $g(z) = 1 / (1+ e^(-z))$
 
   *Hypothese*:\
-  $h_theta(x) = g(theta^T x)$
+  $h_theta (x) = g(theta^T x) = 1 / (1+ e^(- theta^T x))$
 
   *Klassifikation*:\
-  $h_theta(x) \ge 0.5 arrow$ Klasse 1\
-  $h_theta(x) < 0.5 arrow$ Klasse 0
+  $h_theta (x) gt.eq 0.5 arrow$ Klasse 1\
+  $h_theta (x) lt 0.5 arrow$ Klasse 0
 
   *Entscheidungsgrenze*:\
   $theta_0 + theta_1 x_1 + theta_2 x_2 = 0$
 
-  *Nicht-linearität* durch Features wie $x_1^2$, $x_1 x_2$, dots
+  *Nicht-linearität*: \
+  $h_theta (x) = g(theta_0 + theta_1 x_1 + theta_2 x_2 + theta_3 x_1^2 + theta_4 x_2^2 + theta_5 x_1 x_2 + dots)$
 ]
 
 #let regularisierung = content-block(title: [Regularisierung])[
 
   *Kostenfunktion mit L2-Regularisierung*:\
-  $J(theta) = frac{1}{2n} sum (h_theta(x^{(i)}) - y^{(i)})^2 + lambda sum_{j=1}^d theta_j^2$
+  $J(theta) = 1 / (2n) sum (h_theta (x^((i))) - y^(\(i\)))^2 + lambda sum_(j=1)^d theta_j^2$
 
   *Effekt von $lambda$*:\
   • $lambda = 0$ → kein Penalty\
@@ -98,9 +99,25 @@
   Sigmoid, Tanh, ReLU, Leaky ReLU, Softmax
 ]
 
-#let convolutional_neuronale_netzwerke = content-block(title: [Convolutional Neuronal Networks])[ ]
+#let convolutional_neuronale_netzwerke = content-block(title: [Convolutional Neuronal Networks])[
 
-#let modell_evaluation = content-block(title: [Modell Evaluation])[ ]
-#let entscheidungsbaeume = content-block(title: [Entscheidungsbäume])[ ]
-#let pca = content-block(title: [Pricipal Component Analysis (PCA)])[ ]
-#let reinforcement_learning = content-block(title: [Reinforcement Learning])[ ]
+]
+
+#let modell_evaluation = content-block(title: [Modell Evaluation])[
+
+
+]
+
+#let entscheidungsbaeume = content-block(title: [Entscheidungsbäume])[
+
+
+]
+
+#let pca = content-block(title: [Pricipal Component Analysis (PCA)])[
+
+
+]
+
+#let reinforcement_learning = content-block(title: [Reinforcement Learning])[
+
+]
