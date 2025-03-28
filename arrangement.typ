@@ -49,3 +49,41 @@
     ),
   ),
 )
+
+#pagebreak()
+
+
+#stack-horizontal(
+  stack-vertical(
+    ratios: (20fr, 1fr),
+    topic-block(
+      title: [Aufgaben],
+      stack-section-vertical(
+        ratios: (1fr, auto),
+        stack-section-horizontal(
+          ratios: (1fr, 1fr, 1fr, 1fr, 1fr),
+          stack-section-vertical(
+            ratios: (1fr, auto),
+            //insert more content blocks here
+          ),
+          stack-section-vertical(
+            ratios: (1fr, auto),
+            //insert more content blocks here
+          ),
+          stack-section-vertical(
+            ratios: (1fr, auto),
+            //insert more content blocks here
+          ),
+          stack-section-vertical(
+            ratios: (1fr, auto),
+            //insert more content blocks here
+          ),
+          stack-section-vertical(
+            ratios: (1fr, auto),
+            //insert more content blocks here
+          ),
+        ),
+      ),
+    ),
+  ),
+)

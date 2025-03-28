@@ -176,7 +176,7 @@
 
 ]
 
-#let pca = content-block(title: [Pricipal Component Analysis (PCA)], color: orange)[
+#let pca = content-block(title: [Pricipal Component Analysis(PCA)], color: orange)[
   *Ziel*:\
   Reduktion der Dimensionalität bei maximalem Erhalt der Varianz.
 

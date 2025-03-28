@@ -61,7 +61,8 @@
       ],
     )
     _state-sf-hide-content.update(hide-content)
-    box(height: 100%, width: 100%, body)
+    //box(height: 100%, width: 100%, body) für einseitiges Dokument
+    body
   }
 }
 
