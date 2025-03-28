@@ -1,10 +1,16 @@
 # 🧠 AI Formula Sheet (Typst)
 
-This repository contains a modular and printable **formula sheet** for the `Introduction to AI` lecture — built with [Typst](https://typst.app), a modern typesetting language.
+This repository contains a modular and printable **formula sheet** for an `Introduction to AI` lecture — built with [Typst](https://typst.app), a modern typesetting language.
 
 It provides a clean layout to organize and present key formulas and concepts, ready for print or digital use.
 
----
+## 📌 Acknowledgement
+
+> 📖 **This repository is based on the amazing work by [@Mathemensch](https://forum.typst.app/u/Mathemensch)**  
+> 💬 Original forum post: [Advanced Organizers for High School Math with CETZ](https://forum.typst.app/t/advanced-organizers-for-high-school-math-with-cetz/2475)  
+> 🔗 View original project on Typst: [typst.app/project/pYq5E3LYyXu5URsJq6UbeH](https://typst.app/project/pYq5E3LYyXu5URsJq6UbeH)
+
+Big thanks for providing a solid foundation with modular layouts!
 
 ## 📁 Project Structure
 
