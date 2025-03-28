@@ -32,17 +32,17 @@
             ratios: (1fr, auto),
             convolutional_neuronale_netzwerke,
             modell_evaluation,
+
+            //insert more content blocks here
+          ),
+          stack-section-vertical(
+            ratios: (1fr, auto),
             entscheidungsbaeume,
             pca,
-            //insert more content blocks here
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
-            //insert more content blocks here
-          ),
-          stack-section-vertical(
-            ratios: (1fr, auto),
-            //insert more content blocks here
+            reinforcement_learning,
           ),
         ),
       ),

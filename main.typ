@@ -1,5 +1,4 @@
 #import "summify.typ": *
-#import "colors.typ": *
 
 //#show math.equation: set text(font: "Fira Math", size: 12pt)
 
