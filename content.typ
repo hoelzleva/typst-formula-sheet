@@ -4,10 +4,12 @@
   Linearer Zusammenhang zwischen den Eingabevariablen x und der Ausgabevariable y wird modelliert.
 
   *Hypothesenfunktion*:\
-  $h_theta(x) = theta_0 + theta_1 x_1 + theta_2 x_2 + dots + theta_n x_n$
+  $h_theta (x) = theta_0 + theta_1 x_1 + theta_2 x_2 + dots + theta_n x_n$
 
   *Kostenfunktion (MSE)*:\
-  $J(theta) = 1 / (2n) sum_(i=1)^n (h_theta (x^(\(i\))) - y^(\(i\)))^2$
+  $J(theta) = 1 / (2n) sum_(i=1)^n (h_theta (x^(\(i\))) - y^(\(i\)))^2$ \
+  mit $n dots "Anzahl Trainingsdaten"$ \
+  Je kleiner $J (theta)$, desto besser die Hypothese.
 
   *Ziel*: \
   Finde Parameter $theta$ um J zu minimieren \
@@ -17,51 +19,65 @@
   Mehrere Features $x_1, x_2, dots, x_n$
 
   *Polynom-Regression*:\
-  $h_theta(x) = theta_0 + theta_1 x + theta_2 x^2 + theta_3 x^3 + dots$
-
+  $h_theta (x) = theta_0 + theta_1 x + theta_2 x^2 + theta_3 x^3 + dots$\
+  Wird eingesetzt, wenn wenn Features nicht-linearen Zusammenhang haben.
 ]
 
 #let gradient_descent = content-block(title: [Gradient Descent], color: green)[
 
   *Update-Regel*:\
-  $theta_j := theta_j - alpha space partial / (partial theta_j) J(theta)$
+  $theta_j := theta_j - alpha space partial / (partial theta_j) J(theta)$ \
+  $alpha dots dots$ Lernrate\
+  $partial / (partial theta_j) J(theta) dots dots$ Ableitungsterm, gibt Richtung des steilsten Anstiegs an \
 
-  *Für lineare Regression*:\
-  $theta_j := theta_j + alpha 1 / n sum_(i=1)^n (y^(\(i\)) - h_theta (x^(\(i\)))) dot x_j^(\(i\))$
-
-  *Lernrate $alpha$*:\
+  *Update-Regel für lineare Regression*:\
+  $theta_j := theta_j + alpha 1 / n sum_(i=1)^n (y^(\(i\)) - h_theta (x^(\(i\)))) dot x_j^(\(i\))$\
+  mit $theta_j$ als Parameter und $x_0^(\(i\)) = 1$ für den Bias-Term.
+  \ *Lernrate $alpha$*:\
   Zu groß → Divergenz,\
-  zu klein → langsame Konvergenz
+  zu klein → (zu) langsame Konvergenz
 
+  *Eigenschaften*:
+  - Bei geeigneter Lernrate konvergiert Gradient Descent zu einem lokalen Minimum der Kostenfunktion. Bei konvexen Funktionen sogar zum globalen Minimum.
+  - Eine konstante Lernrate kann ausreichen, wenn sie angemessen gewählt ist. Adaptive Lernraten können die Konvergenz verbessern.
+  - Steilere Kostenfunktionen erfordern kleinere Lernraten
 ]
 
 #let logistische_regression = content-block(title: [Logistische Regression], color: blue)[
 
-  *Sigmoidfunktion*:\
-  $g(z) = 1 / (1+ e^(-z))$
 
   *Hypothese*:\
-  $h_theta (x) = g(theta^T x) = 1 / (1+ e^(- theta^T x))$
+  $h_theta (x) = g(theta^T x) = 1 / (1+ e^(- theta^T x))$\
+
+  $g(z) = 1 / (1+ e^(-z)) dots dots$ Sigmoidfunktion\
+  mit $theta^T x = theta_0 + theta_1 x_1 + theta_2 x_2 + dots + theta_n x_n$
+
 
   *Klassifikation*:\
+  $h_theta (x)$ ist quasi Wahrscheinlichkeit (0...1)\
   $h_theta (x) gt.eq 0.5 arrow$ Klasse 1\
   $h_theta (x) lt 0.5 arrow$ Klasse 0
 
   *Entscheidungsgrenze*:\
-  $theta_0 + theta_1 x_1 + theta_2 x_2 = 0$
+  $theta^T x = 0$ weil da wird $h_theta (x) =0,5$
 
   *Nicht-linearität*: \
   $h_theta (x) = g(theta_0 + theta_1 x_1 + theta_2 x_2 + theta_3 x_1^2 + theta_4 x_2^2 + theta_5 x_1 x_2 + dots)$
+
+  *Polynom-Regression*:\
+  $h_theta (x) = theta_0 + theta_1 x_1 + theta_2 x_2_+ theta_3 x_1 x_2 + theta_4 x_1^2 + theta_5 x_2^2 + dots$\
+  Fähigkeit, nicht-lineare Entscheidungsgrenzen zu erzeugen
 ]
 
 #let regularisierung = content-block(title: [Regularisierung], color: navy)[
 
   *Kostenfunktion mit L2-Regularisierung*:\
-  $J(theta) = 1 / (2n) sum (h_theta (x^((i))) - y^(\(i\)))^2 + lambda sum_(j=1)^d theta_j^2$
+  $J(theta) = 1 / (2n) (sum_(i=1)^n (h_theta (x^((i))) - y^(\(i\)))^2 + lambda sum_(j=1)^d theta_j^2)$
 
-  *Effekt von $lambda$*:\
+  *Effekt von $lambda$ (Regularisierungsparameter)*:\
   - $lambda = 0$ → kein Penalty\
-  - großes $lambda$ → starke Bestrafung, Underfitting
+  - kleines $lambda$ → schwache Bestrafung von großen Parameterwerten, Gefahr von Overfitting\
+  - großes $lambda$ → starke Bestrafung von großen Parameterwerten, Gefahr von Underfitting
 
   *Bias-Term $theta_0$ wird oft nicht regularisiert*
 ]
@@ -69,17 +85,17 @@
 #let svm_block = content-block(title: [Support Vector Machines], color: aqua)[
 
   *Ziel*:\
-  $\min_{w,b} ( 1}{2} \|w\|^2 + C sum \xi_i )$
+  $min_(w,b) { 1 / 2 \|\|w\|\|^2 + C sum_(i=1)^n xi_i }$
 
   *Nebenbedingungen*:\
-  $y^{(i)} (w^T x^{(i)} + b) \ge 1 - \xi_i$ mit $\xi_i \ge 0$
+  $y^(\(i\)) (w^T x^(\(i\)) + b) gt.eq 1 - xi_i$, mit $xi_i gt.eq 0 space space (i = 1, dots, n)$
 
   *C kontrolliert Trade-off*:\
   großes $C$ → weniger Fehler,\
   kleines $C$ → größerer Margin
 
   *Kernel-Trick*:\
-  z. B. $K(x, x') = e^{-gamma \|x - x'\|^2}$ (RBF-Kernel)
+  z.B. $K(x, x') = e^{-gamma \|x - x'\|^2}$ (RBF-Kernel)
 ]
 
 #let neuronale_netzwerke = content-block(title: [Neuronale Netzwerke], color: purple)[
@@ -129,8 +145,8 @@
 
   *Konfusionsmatrix*:\
   *TP = True Positive* - Patienten, die krank sind und als krank klassifiziert wurden\
-  *FP = False Positive* - (Patienten, die gesund sind, aber als krank klassifiziert wurden \
-  *TN = True Negative* - (Patienten, die gesund sind und als gesund klassifiziert wurden\
+  *FP = False Positive* - Patienten, die gesund sind, aber als krank klassifiziert wurden \
+  *TN = True Negative* - Patienten, die gesund sind und als gesund klassifiziert wurden\
   *FN = False Negative* - Patienten, die krank sind, aber als gesund klassifiziert wurden
 
   *Metriken*:\
@@ -140,8 +156,7 @@
   F1-Score = $2 dot ("Precision" dot "Recall")/("Precision" + "Recall")$
 
   *Beispiel*:\
-  Ein Modell mit hohem Recall identifiziert möglichst viele positive Fälle,\
-  auch auf Kosten von mehr False Positives.
+  Ein Modell mit hohem Recall identifiziert möglichst viele positive Fälle, auch auf Kosten von mehr False Positives.
 
   *Wann ist Recall wichtiger?*\
   - Krankheitserkennung\

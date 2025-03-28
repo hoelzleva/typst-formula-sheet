@@ -18,31 +18,33 @@
             ratios: (1fr, auto),
             lineare_regression,
             gradient_descent,
-            logistische_regression,
             //insert more content blocks here
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
+            logistische_regression,
             regularisierung,
             svm_block,
-            neuronale_netzwerke,
             //insert more content blocks here
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
+            neuronale_netzwerke,
             convolutional_neuronale_netzwerke,
-            modell_evaluation,
+
 
             //insert more content blocks here
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
+
             entscheidungsbaeume,
             pca,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
             reinforcement_learning,
+            modell_evaluation,
           ),
         ),
       ),
