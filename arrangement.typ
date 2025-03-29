@@ -23,14 +23,12 @@
           stack-section-vertical(
             ratios: (1fr, auto),
             logistische_regression,
-            regularisierung,
             svm_block,
             //insert more content blocks here
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
             neuronale_netzwerke,
-            convolutional_neuronale_netzwerke,
 
 
             //insert more content blocks here
@@ -66,7 +64,8 @@
           ratios: (1fr, 1fr, 1fr, 1fr, 1fr),
           stack-section-vertical(
             ratios: (1fr, auto),
-            //insert more content blocks here
+            regularisierung,
+            convolutional_neuronale_netzwerke,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),

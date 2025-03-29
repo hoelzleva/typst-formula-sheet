@@ -94,22 +94,57 @@
   großes $C$ → weniger Fehler,\
   kleines $C$ → größerer Margin
 
-  *Kernel-Trick*:\
-  z.B. $K(x, x') = e^{-gamma \|x - x'\|^2}$ (RBF-Kernel)
+  *Kernel*:\
+  $K (x,l) = exp (-(\|\|x-l\|\|^2) / (2 sigma^2))$
+
+  *Kernel-Funktionen*:\
+  - *Linear*: $K(x_i, x_j) = x_i^T x_j$\
+    Für lineare Trennungen\
+  - *Polynomial*: $K(x_i, x_j) = (x_i^T x_j + r)^d$\
+    $r dots dots$ konstanter Offset\
+    $d dots dots$ Grad des Polynoms\
+    Erlaubt gekrümmte trennungen (Parabeln, ...)
+  - *RBF (Gaussian)*: $K(x_i, x_j) = e^(-gamma \|\|x_i - x_j\|\|^2)$\
+    Komplexe, nicht-lineare Trennungen\
+  - *Sigmoid*: $K(x_i, x_j) = tanh(kappa x_i^T x_j + c)$
+    Inspiriert von neuronalen Netzen, selten verwendet\
 ]
 
 #let neuronale_netzwerke = content-block(title: [Neuronale Netzwerke], color: purple)[
 
+  *Parametermatrizen*:\
+  dim($theta^(\(l\))$) = $(s_(l+1) times (s_l + 1))$\
+  $theta^(l) dots dots $Gewichtsmatrizen,
+  $l dots dots$ layer,\
+  $s_l dots dots$ Anzahl Units in Layer \($l$\),
+  in $(s_l + 1)$, das +1 steht für Bias-Unit (zusätzliche Spalte)
+
+  *Fehlerterm $delta$*:\
+  $delta_(i j)^(\(l\)) = h_theta (x^(\(i\)))-y^(\(i\))$\
+  $i dots "Trainingsbeispiel"$,
+  $j dots "Neuron"$,
+  $l dots$ layer,\
+  $h_theta (x^(\(i\))) dots "Netzwerkvorhersage"$,
+  $y^(\(i\)) dots "tatsächlicher Zielwert"$,
+  $n dots "Anzahl Trainingsbeispiele"$,\
+
+
+  $partial / (partial Theta_(i j)^(\(l -1\))) J(Theta) = 1 / n sum_(k=1)^n delta_(k i)^(\(l\)) a_j^(\(l-1\))$ \
+
   *Feedforward*:\
-  $z^{(l+1)} = theta^{(l)} a^{(l)}$\
-  $a^{(l+1)} = g(z^{(l+1)})$
+  $z^(l+1) = theta^(l) a^(l)$\
+  $a^(l+1) = g(z^(l+1))$
 
   *Backpropagation*:\
-  $delta^{(L)} = a^{(L)} - y$\
-  $delta^{(l)} = (theta^{(l)})^T delta^{(l+1)} .* g'(z^{(l)})$
+  $delta_j^(\(l\)) = (sum_(k=1)^(s_(l+1))(Theta_(k j)^(\(l\)) dot delta_k^(\(l+1\))))dot g'(z_j^(\(l\)))$\
+  $dots$ Gewicht zwischen Neuron $j$ in Layer $l$ und Neuron $k$ im Layer $l+1$\
+  $delta_k^(\(l+1\))) dots$ Fehlerterm aus der folgenden Schicht (bereits berechnet).\
+  $g'(z_j^(\(l\)))$Ableitung der Aktivierungsfunktion am Wert\
+  $delta^(L) = a^(L) - y$\
+  $delta^(l) = (theta^(l))^T delta^(l+1) .* g'(z^(l))$
 
   *Gradientenabstieg*:\
-  $theta^{(l)} := theta^{(l)} - alpha delta^{(l)} a^{(l-1)}$
+  $theta^(l) := theta^(l) - alpha delta^(l) a^(l-1)$
 
   *Aktivierungsfunktionen*:\
   Sigmoid, Tanh, ReLU, Leaky ReLU, Softmax
