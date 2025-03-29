@@ -131,7 +131,7 @@
   $y^(\(i\)) dots "tatsächlicher Zielwert"$,
   $n dots "Anzahl Trainingsbeispiele"$,\
 
-
+  *Gradientenberechnung (Backpropagation)*:\
   $partial / (partial Theta_(i j)^(\(l -1\))) J(Theta) = 1 / n sum_(k=1)^n delta_(k i)^(\(l\)) a_j^(\(l-1\))$ \
 
   *Feedforward*:\
@@ -284,21 +284,21 @@
 
 ]
 
-#let backpropagation_aufgabe = content-block(title: [Backpropagation Aufgabe], color: teal)[
-  - Gegeben:\
+#let backpropagation_aufgabe = content-block(title: [Backpropagation Aufgabe (21)], color: teal)[
+  *Gegeben*:\
 
-    $x^(\(1\)) = (x_1^(\(1\)), x_2^(\(1\))) = mat(0.5, 0.7)$,\
-    $y^(\(1\)) = (1)$, ("Klasse 1"),\
-    $h_theta (x^(\(1\))) = 0.5$,\
-    Aktivierungsfunktion: \
+  - $x^(\(1\)) = (x_1^(\(1\)), x_2^(\(1\))) = mat(0.5, 0.7)$,\
+  - $y^(\(1\)) = (1)$, ("Klasse 1"),\
+  - $h_theta (x^(\(1\))) = 0.5$,\
+  - Aktivierungsfunktion: \
     Sigmoid $a_j^(\(i\)) = g(z_j^(\(i\))) = 1 / (1+ e^(-z_j^(\(i\))))$
 
-    Gewichtsmatrizen:\
+  - Gewichtsmatrizen:\
     $Theta^(\(1\)) = mat(
-                    1 , 1 , 2;
-                    2 , 1.5 , 0.7;
-                    -0.5 , -1 , 2;
-                          )$,\
+                      1 , 1 , 2;
+                      2 , 1.5 , 0.7;
+                      -0.5 , -1 , 2;
+                            )$,\
     $Theta^(\(2\)) = mat(
                       1 , -0.9 , -0.7, 0.9;
                         )$
@@ -323,8 +323,14 @@
     $= (1,1 / (1+e^(-z_1^(\(2\)))), 1 / (1+e^(-z_2^(\(2\)))),1 / (1+e^(-z_3^(\(2\)))) )$
     $ ≈ mat(1, 0.948, 0.962, 0.599)$, die 1 ist der Bias-Term.
 
-  - Schritt 4 - *Backpropagation*\
+  - Schritt 4 - *Gradientenberechnung (Backpropagation)*\
     $partial / (partial Theta_(i j)^(\(l -1\))) J(Theta) = 1 / n sum_(k=1)^n delta_(k i)^(\(l\)) a_j^(\(l-1\))$ \
 
     $delta_(11)^(\(3\)) dot a^(\(2\)) = -0.5 dot 0.948 = -0.474$
+
+  - Schritt 5 *Prüfen mittels Gradientenquotienten*:\
+    $J(Theta) = 1 / (2n) (sum_(i=1)^n (h_Theta (x^((i))) - y^(\(i\)))^2$\
+
+    $= 1 / 2 (0.5 - 1)^2$
+    $= 0.125$\
 ]
