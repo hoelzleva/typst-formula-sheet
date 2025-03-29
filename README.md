@@ -56,13 +56,12 @@ Or use the Typst web app by uploading the files.
 2. Add your block:
 
 ```typst
-#let bayes_theorem = block(
-  heading: [Bayes Theorem],
-  formula: [$P(A \| B) = \frac{P(B \| A) \cdot P(A)}{P(B)}$],
-)
+#let bayes_theorem = content-block(title: [Backpropagation Aufgabe (21)], color: teal)[
+  //Your content here
+]
 ```
 
-3. Include the block in arrangement.typ where needed:
+3. Include the block in `arrangement.typ` where needed:
 
 ```typst
 stack-section-vertical(
