@@ -69,7 +69,7 @@
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
-            //insert more content blocks here
+            backpropagation_aufgabe,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),

@@ -112,6 +112,9 @@
 
 #let neuronale_netzwerke = content-block(title: [Neuronale Netzwerke], color: purple)[
 
+  $z_j^(\(l\))$ ist der gewichtete Input für Neuron $j$ in Layer $l$.\
+  $a_j^(\(l\))$ ist die Aktivierung des Neurons $j$ in Layer $l$.\
+
   *Parametermatrizen*:\
   dim($theta^(\(l\))$) = $(s_(l+1) times (s_l + 1))$\
   $theta^(l) dots dots $Gewichtsmatrizen,
@@ -137,11 +140,12 @@
 
   *Backpropagation*:\
   $delta_j^(\(l\)) = (sum_(k=1)^(s_(l+1))(Theta_(k j)^(\(l\)) dot delta_k^(\(l+1\))))dot g'(z_j^(\(l\)))$\
-  $dots$ Gewicht zwischen Neuron $j$ in Layer $l$ und Neuron $k$ im Layer $l+1$\
+  $Theta_(k j)^(\(l\)) dots$ Gewicht zwischen Neuron $j$ in Layer $l$ und Neuron $k$ im Layer $l+1$\
   $delta_k^(\(l+1\))) dots$ Fehlerterm aus der folgenden Schicht (bereits berechnet).\
-  $g'(z_j^(\(l\)))$Ableitung der Aktivierungsfunktion am Wert\
+  $g'(z_j^(\(l\)))$Ableitung der Aktivierungsfunktion am Wert $z_j^(\(l\))$\
+
   $delta^(L) = a^(L) - y$\
-  $delta^(l) = (theta^(l))^T delta^(l+1) .* g'(z^(l))$
+  $delta^(l) = (theta^(l))^T delta^(l+1) dot g'(z^(l))$
 
   *Gradientenabstieg*:\
   $theta^(l) := theta^(l) - alpha delta^(l) a^(l-1)$
@@ -278,4 +282,49 @@
   - Robotik\
   - Empfehlungssysteme
 
+]
+
+#let backpropagation_aufgabe = content-block(title: [Backpropagation Aufgabe], color: teal)[
+  - Gegeben:\
+
+    $x^(\(1\)) = (x_1^(\(1\)), x_2^(\(1\))) = mat(0.5, 0.7)$,\
+    $y^(\(1\)) = (1)$, ("Klasse 1"),\
+    $h_theta (x^(\(1\))) = 0.5$,\
+    Aktivierungsfunktion: \
+    Sigmoid $a_j^(\(i\)) = g(z_j^(\(i\))) = 1 / (1+ e^(-z_j^(\(i\))))$
+
+    Gewichtsmatrizen:\
+    $Theta^(\(1\)) = mat(
+                    1 , 1 , 2;
+                    2 , 1.5 , 0.7;
+                    -0.5 , -1 , 2;
+                          )$,\
+    $Theta^(\(2\)) = mat(
+                      1 , -0.9 , -0.7, 0.9;
+                        )$
+
+  *Forward-Propagation*:\
+
+  - Schritt 1 - Input Layer (inklusive Bias):\
+    $a^(\(1\)) = mat(1, x_1^(\(1\)), x_2^(\(1\))) = mat(1, 0.5, 0.7)$
+
+  - Schritt 2 - Hidden Layer Input berechnen:\
+    $z^(\(2\)) = Theta^(\(1\)) dot a^(\(1\))$
+    $mat(
+                    1 , 1 , 2;
+                    2 , 1.5 , 0.7;
+                    -0.5 , -1 , 2;
+                          ) dot mat(1, 0.5, 0.7)$\
+    $= mat(1 dot 1 + 1 dot 0.5 + 2 dot 0.7, 2 dot 1 + 1.5 dot 0.5 + 0.7 dot 0.7, -0.5 dot 1 - 1 dot 0.5 + 2 dot 0.7)$\
+    $= mat(2.9, 3.24, 0.4)$
+
+  - Schritt 3 - Aktivierungsfunktion (Sigmoid) anwenden:\
+    $a^(\(2\)) = g(z^(\(2\)))$
+    $= (1,1 / (1+e^(-z_1^(\(2\)))), 1 / (1+e^(-z_2^(\(2\)))),1 / (1+e^(-z_3^(\(2\)))) )$
+    $ ≈ mat(1, 0.948, 0.962, 0.599)$, die 1 ist der Bias-Term.
+
+  - Schritt 4 - *Backpropagation*\
+    $partial / (partial Theta_(i j)^(\(l -1\))) J(Theta) = 1 / n sum_(k=1)^n delta_(k i)^(\(l\)) a_j^(\(l-1\))$ \
+
+    $delta_(11)^(\(3\)) dot a^(\(2\)) = -0.5 dot 0.948 = -0.474$
 ]
