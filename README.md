@@ -3,7 +3,6 @@
 This repository contains a modular and printable **formula sheet** for an `Introduction to AI` lecture — built with [Typst](https://typst.app), a modern typesetting language.
 
 It provides a clean layout to organize and present key formulas and concepts, ready for print or digital use.
-An example is provided in the `example.pdf` file.
 
 Check out the `example.pdf` here: <a href="example.pdf">Formula Sheet Example
 
