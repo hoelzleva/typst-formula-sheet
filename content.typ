@@ -155,6 +155,14 @@
 ]
 
 #let convolutional_neuronale_netzwerke = content-block(title: [Convolutional Neuronal Networks], color: olive)[
+
+  *Stride*: Bestimmt, um wie viele Pixel der Filter bei jedem Schritt verschoben wird. Ein gröÿerer Stride führt zu einer stärkeren Dimensionsreduktion.
+  *Padding*:Das Hinzufügen zusätzlicher Pixel am Rand des Eingabebildes.
+  - *"Valid"* Padding: Kein zusätzliches Padding, der Filter wird nur angewendet, wenn er vollständig innerhalb des Bildes liegt.
+  - *"Same"* Padding: Fügt Padding hinzu, sodass die Ausgabedimension gleich der Eingabedimension bleibt (bei Stride 1).
+
+  $"Ausgabedimension" = ("Eingabedimension" - " Filtergröße" + 2 dot "Padding") / ("Stride") +1$
+
   *Output Convolutional Filter*:\
   Output = $sum_(i=0)^2 sum_(j=0)^2 "Input" [i,j] dot "Filter"[i,j]$\
   $= 0 dot 1 + 4 dot 2 + 2 dot 1 + 13 dot 2 + 25 dot 4 + 5 dot 2 + 8 dot 1 + 6 dot 2 + 3 dot 1 = 169$
@@ -209,12 +217,31 @@
 
 #let entscheidungsbaeume = content-block(title: [Entscheidungsbäume], color: fuchsia)[
 
+
   *Grundidee*:\
   Baumstruktur zur schrittweisen Entscheidung basierend auf Features.
 
   *Split-Kriterien*:\
-  - Entropie: $H(S) = -sum p_i log_2(p_i)$\
-  - Informationsgewinn\
+  - Entropie: $H = - p_i log_2(p_i) - p_j log_2(p_j) - dots$\
+    $p_i dots $Wahrscheinlichkeit (relative Häufigkeit) der Klasse $i$,
+    $p_j dots $Wahrscheinlichkeit der Klasse $j$\
+
+    $p_i = u / n$,
+    $p_j = v / n$\
+    $n dots$ Gesamtanzahl Datenpunkte,\
+    $u dots$ Anzahl Datenpunkte der Klasse $i$,\
+    $v dots$ Anzahl Datenpunkte der Klasse $j$\
+
+    $H = 0 arrow$ maximale Ordnung (reine klasse)\
+    $H=1 arrow$ maximale Unordnung\
+
+    *Informationsgewinn*:\
+    $"Gain"(A) = H("Ursprungspartition")\ - ((\|"P1"\|) / (\|"P1"\|+\|"P2"\|) dot H ("P1") + (\|"P2"\|) / (\|"P1"\|+\|"P2"\|) dot H("P2)"))$\
+    $A dots$ Partitionierung des Datensatzes\
+    $"P1", "P2" dots$ Partitionen nach dem Split\
+
+
+
   - Gini-Index: $"Gini"(S) = 1 - sum p_i^2$
 
   *Vorteile*:\
