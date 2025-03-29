@@ -155,6 +155,10 @@
 ]
 
 #let convolutional_neuronale_netzwerke = content-block(title: [Convolutional Neuronal Networks], color: olive)[
+  *Output Convolutional Filter*:\
+  Output = $sum_(i=0)^2 sum_(j=0)^2 "Input" [i,j] dot "Filter"[i,j]$\
+  $= 0 dot 1 + 4 dot 2 + 2 dot 1 + 13 dot 2 + 25 dot 4 + 5 dot 2 + 8 dot 1 + 6 dot 2 + 3 dot 1 = 169$
+
   *Hauptidee*:\
   Extraktion lokaler Merkmale durch Faltungsoperationen.
 
