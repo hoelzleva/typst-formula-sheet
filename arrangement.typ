@@ -37,11 +37,10 @@
             ratios: (1fr, auto),
 
             entscheidungsbaeume,
-            pca,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
-            reinforcement_learning,
+
             modell_evaluation,
           ),
         ),
@@ -64,20 +63,21 @@
           ratios: (1fr, 1fr, 1fr, 1fr, 1fr),
           stack-section-vertical(
             ratios: (1fr, auto),
-            regularisierung,
+
             convolutional_neuronale_netzwerke,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
             backpropagation_aufgabe,
+            regularisierung,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
-            //insert more content blocks here
+            pca,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
-            //insert more content blocks here
+            reinforcement_learning,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
