@@ -346,12 +346,17 @@
 #let reinforcement_learning = content-block(title: [Reinforcement Learning], color: maroon)[
   *Value Function*:\
   Erwarteter kumulativer Reward für eine gegebene Policy $pi$. Maß für die "Güte" eines Zustands:\
-  $v_pi (s) = "unmittelbarer Reward" + "Wert des Folgezustands"$\
+  $v_pi (S_1) = "unmittelbarer Reward" + "Wert des Folgezustands"$\
   $v_pi (S_1) = R_2 + v_pi (S_2)$\
   $s dots$ Zustand,
   $pi dots$ Policy,
   $R dots$ unmittelbarer Reward
   $v_pi (s) dots$ Wertfunktion für Zustand $s$
+
+  *"Wert von Zustand „S“ "*:\
+  Einfach alle Werte der kommenden Felder, entlang der Policy $pi$ addieren.\
+  $v_pi (S) = (-1)*16$
+  #image("plots/reward-graph.png", width: 100%)
 
   *Grundidee*:\
   Ein Agent lernt durch Interaktion mit einer Umgebung, um Belohnungen zu maximieren.
