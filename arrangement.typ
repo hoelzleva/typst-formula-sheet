@@ -22,7 +22,7 @@
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
-            logistische_regression,
+
             svm_block,
             //insert more content blocks here
           ),
@@ -81,7 +81,7 @@
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
-            //insert more content blocks here
+            logistische_regression,
           ),
         ),
       ),

@@ -11,7 +11,7 @@
   mit $n dots "Anzahl Trainingsdaten"$ \
   Je kleiner $J (theta)$, desto besser die Hypothese.
 
-  *Ziel*: \
+  *Ziel*:
   Finde Parameter $theta$ um J zu minimieren \
   *$min J(theta)$*
 
@@ -31,14 +31,19 @@
   $partial / (partial theta_j) J(theta) dots dots$ Ableitungsterm, gibt Richtung des steilsten Anstiegs an \
 
   *Update-Regel für lineare Regression*:\
-  $theta_j := theta_j + alpha 1 / n sum_(i=1)^n (y^(\(i\)) - h_theta (x^(\(i\)))) dot x_j^(\(i\))$\
-  mit $theta_j$ als Parameter und $x_0^(\(i\)) = 1$ für den Bias-Term.
-  \ *Lernrate $alpha$*:\
+  $theta_j := theta_j + alpha 1 / n sum_(i=1)^n [(y^(\(i\)) - h_theta (x^(\(i\)))) dot x_j^(\(i\))]$\
+  mit $theta_j$ als Parameter und *$x_0^(\(i\)) = 1$ für den Bias-Term, beim ersten $theta_0$ Update.*\
+
+  *Lernrate $alpha$*:\
   Zu groß → Divergenz,\
   zu klein → (zu) langsame Konvergenz
 
+  - *Beispiel:*
+    Kostenfunktion mit den neuen Parametern (nach einem Gradient Descent Update) ist größer als mit den alten Parametern
+    (vor dem Update). Vermutlich ist die Lernrate $alpha$ zu groß gewählt
+
   *Eigenschaften*:
-  - Bei geeigneter Lernrate konvergiert Gradient Descent zu einem lokalen Minimum der Kostenfunktion. Bei konvexen Funktionen sogar zum globalen Minimum.
+  - Bei geeigneter Lernrate konvergiert Gradient Descent zu einem *lokalen Minimum* der Kostenfunktion. Bei konvexen Funktionen sogar zum *globalen Minimum.* Bei Update nach dem erreichen des Minimums bleibt $theta$ konstant.
   - Eine konstante Lernrate kann ausreichen, wenn sie angemessen gewählt ist. Adaptive Lernraten können die Konvergenz verbessern.
   - Steilere Kostenfunktionen erfordern kleinere Lernraten
 ]
@@ -59,7 +64,10 @@
   $h_theta (x) lt 0.5 arrow$ Klasse 0
 
   *Entscheidungsgrenze*:\
-  $theta^T x = 0$ weil da wird $h_theta (x) =0,5$
+  + $theta^T x = 0$ bzw. $z = 0$ weil da wird $h_theta (theta^T x) = 0.5$\
+  + Umformen zu $x_2 = x_1 + d$ \
+  + *Beispiel* mit $x_2 = 2 -1.5 x_1$:
+  #image("plots/entscheidungsgrenze.svg", width: 100%)
 
   *Nicht-linearität*: \
   $h_theta (x) = g(theta_0 + theta_1 x_1 + theta_2 x_2 + theta_3 x_1^2 + theta_4 x_2^2 + theta_5 x_1 x_2 + dots)$
@@ -70,6 +78,9 @@
 ]
 
 #let regularisierung = content-block(title: [Regularisierung], color: navy)[
+
+  $+ lambda sum_(j=1)^d theta_j^2$,
+  $space space d dots$ Dimension der Eingabedaten\
 
   *Kostenfunktion mit L2-Regularisierung*:\
   $J(theta) = 1 / (2n) (sum_(i=1)^n (h_theta (x^((i))) - y^(\(i\)))^2 + lambda sum_(j=1)^d theta_j^2)$
