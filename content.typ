@@ -70,6 +70,7 @@
   #image("plots/entscheidungsgrenze.svg", width: 100%)
 
   *Nicht-linearität*: \
+  Polynomielle Features erzeugen nicht-lineare Entscheidungsgrenzen\
   $h_theta (x) = g(theta_0 + theta_1 x_1 + theta_2 x_2 + theta_3 x_1^2 + theta_4 x_2^2 + theta_5 x_1 x_2 + dots)$
 
   *Polynom-Regression*:\
@@ -102,6 +103,7 @@
   $y^(\(i\)) (w^T x^(\(i\)) + b) gt.eq 1 - xi_i$, mit $xi_i gt.eq 0 space space (i = 1, dots, n)$
 
   *C kontrolliert Trade-off*:\
+  Um *Outlier* weniger zu gewichten und eine robustere Entscheidungsgrenze zu erhalten, muss der Parameter C verkleinert werden. Dadurch ist weniger Gewicht auf den „Strafterm“ für das Nicht-Einhalten der Nebenbedingung \
   großes $C$ → weniger Fehler,\
   kleines $C$ → größerer Margin
 
@@ -114,11 +116,30 @@
   - *Polynomial*: $K(x_i, x_j) = (x_i^T x_j + r)^d$\
     $r dots dots$ konstanter Offset\
     $d dots dots$ Grad des Polynoms\
-    Erlaubt gekrümmte trennungen (Parabeln, ...)
+    Erlaubt gekrümmte Trennungen (Parabeln, ...)
   - *RBF (Gaussian)*: $K(x_i, x_j) = e^(-gamma \|\|x_i - x_j\|\|^2)$\
     Komplexe, nicht-lineare Trennungen\
   - *Sigmoid*: $K(x_i, x_j) = tanh(kappa x_i^T x_j + c)$
     Inspiriert von neuronalen Netzen, selten verwendet\
+
+  *Wählen von Stützpunkten ("Landmarks")*:\
+  - Oft einfach: Alle Trainingspunkte → jeder Punkt wird zum Landmark (klassisch bei RBF-Kernel)
+
+  - Alternativ: nur ausgewählte Punkte, z.B.
+
+    - Support-Vektoren (nur „wichtige“ Punkte)
+
+    - Clusterzentren (z.B. mit K-Means)
+
+    - Gleichmäßig verteilt im Raum (für generalisierte Modelle)
+
+  Ziel: Landmark-Punkte definieren die Feature-Transformation durch den Kernel.
+  \
+  - Vorhersage: $y=1$ $y=1, "wenn" b + w_1 f_1 + w_2 f_2 + w_3 f_3 gt.eq 0$, sonst $y=-1$
+  - Neue Landmark berücksichtigen → passenden $w_i$ erhöhen
+  - Bereich zwischen zwei Landmarks ausschließen → $w$ verkleinern
+  - Bereich mit $y=1$ vergrößern → $w$ oder $b$ erhöhen
+  - Bereich mit $y=1$ verkleinern → $w$ oder $b$ verringern
 ]
 
 #let neuronale_netzwerke = content-block(title: [Neuronale Netzwerke], color: purple)[
@@ -163,6 +184,10 @@
 
   *Aktivierungsfunktionen*:\
   Sigmoid, Tanh, ReLU, Leaky ReLU, Softmax
+
+  *Symmetrie*:\
+  Austausch der Neuronen in einem Hidden Layer (inkl. zugehöriger Gewichte im nächsten Layer) → hat keinen Einfluss auf den Output
+  $h_Theta (x)$, da die Gesamtfunktion identisch bleibt.
 ]
 
 #let convolutional_neuronale_netzwerke = content-block(title: [Convolutional Neuronal Networks], color: olive)[
@@ -176,7 +201,26 @@
 
   *Output Convolutional Filter*:\
   Output = $sum_(i=0)^2 sum_(j=0)^2 "Input" [i,j] dot "Filter"[i,j]$\
-  $= 0 dot 1 + 4 dot 2 + 2 dot 1 + 13 dot 2 + 25 dot 4 + 5 dot 2 + 8 dot 1 + 6 dot 2 + 3 dot 1 = 169$
+  Beispiel: \
+
+  Filter: $space space space space space space space space space space space space space space space space space space $ Input:
+  #let table1 = table(
+    columns: 3,
+    "1", "2", "1",
+    "2", "4", "2",
+    "1", "2", "1",
+  )
+
+  #let table2 = table(
+    columns: 3,
+    "2", "5", "4",
+    "13", "25", "15",
+    "8", "6", "6",
+  )
+  #divided(table1, table2)
+  $= 2*1 + 5*2 + 4*1 + 13*2 + 25*4 + 15*2 + 8*1 + 6*2 + 6*1 = 2 + 10 + 4 + 26 + 100 + 30 + 8 + 12 + 6 = 198$
+
+
 
   *Hauptidee*:\
   Extraktion lokaler Merkmale durch Faltungsoperationen.
@@ -384,4 +428,22 @@
 
     $= 1 / 2 (0.5 - 1)^2$
     $= 0.125$\
+]
+
+#let boolsche_neuronale_netzwerke = content-block(title: [Boolesche Neuronale Netzwerke], color: lime)[
+
+  #image("plots/general_boolean_network.svg", width: 90%)
+
+  #table(
+      columns: 4,
+      table.header(
+        "Funktion", "a", "b", "c",
+      ),
+
+        ($x_1 "and" x_2$), "-30", "20", "20",
+        $("not" x_1) "and (not" x_2)$, "10", "-20", "-20",
+        $x_1 "or" x_2$, "-10", "20", "20",
+
+    ),
+
 ]

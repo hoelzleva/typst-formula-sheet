@@ -237,3 +237,16 @@
 #let stack-section-horizontal(ratios: none, ..children) = {
   stack(direction: "horizontal", stack-type: "subtopic", ratios: ratios, ..children)
 }
+
+#let divided(left, right) = {
+  rect(
+    inset: 0pt,
+    stroke: 0pt,
+    height: auto,
+    grid(
+      columns: (1fr, auto, 1fr),
+      gutter: 0pt,
+      pad(rest: 0pt, left), pad(rest: 0pt, right),
+    ),
+  )
+}

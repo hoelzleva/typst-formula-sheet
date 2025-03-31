@@ -42,6 +42,7 @@
             ratios: (1fr, auto),
 
             modell_evaluation,
+            boolsche_neuronale_netzwerke,
           ),
         ),
       ),
