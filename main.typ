@@ -2,7 +2,7 @@
 
 //#show math.equation: set text(font: "Fira Math", size: 12pt)
 
-#set page(footer: [von Eva Hölzl])
+#set page(footer: [= Eva Hölzl])
 
 #show: summify.with(
   paper: "a4",

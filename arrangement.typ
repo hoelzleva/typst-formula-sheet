@@ -57,7 +57,7 @@
   stack-vertical(
     ratios: (20fr, 1fr),
     topic-block(
-      title: [Aufgaben],
+      title: [Formeln 2],
       stack-section-vertical(
         ratios: (1fr, auto),
         stack-section-horizontal(

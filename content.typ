@@ -229,22 +229,21 @@
   wendet Filter (Kerne) an:\
   $z = W ast x + b$
 
-  *Pooling-Schicht*:\
-  Reduktion der Dimensionalität (z.B. Max-Pooling oder Average-Pooling)
-
   *Aktivierung*:\
   Typisch: ReLU $f(x) = max(0, x)$
 
   *Architektur-Beispiel*:\
   Input → Conv → ReLU → Pool → Dense → Output
 
-  *Parameteranzahl*:\
-  Abhängig von Filtergröße und Anzahl
-
+  *CNN Outputdimension*:\
+  Input: 100x100 Pixel, 3 Kanäle\
+  Kernel: 3x3, Stride = 1, „same padding“\
+  + 1 Filter → Output-Dim: 100x100x1\
+  + 60 Filter → Output-Dim: 100x100x60\
+  Faustregel: Anzahl der Filter = Anzahl Output-Kanäle\
   *Vorteile*:\
   - Translation-Invarianz\
   - Weniger Parameter als vollständig verbundene Netze
-
 ]
 
 #let modell_evaluation = content-block(title: [Modell Evaluation], color: yellow)[
@@ -267,7 +266,12 @@
   *Wann ist Recall wichtiger?*\
   - Krankheitserkennung\
   - Sicherheitschecks\
-  - Betrugserkennung
+  - Betrugserkennung\
+
+  *Hohe Fehler auf Training & CV*\
+  → (Underfitting) Braucht mehr hidden Layers, Neuronen, weniger Regularisierung\
+  *Gute Trainingsperformance, schlechte CV*\
+  → (Overfitting) Braucht mehr Trainingsdaten, weniger Features, mehr Regularisierung
 ]
 
 #let entscheidungsbaeume = content-block(title: [Entscheidungsbäume], color: fuchsia)[
@@ -290,10 +294,12 @@
     $H = 0 arrow$ maximale Ordnung (reine klasse)\
     $H=1 arrow$ maximale Unordnung\
 
-    *Informationsgewinn*:\
+    *Informationsgewinn Gain(A)*:\
     $"Gain"(A) = H("Ursprungspartition")\ - ((\|"P1"\|) / (\|"P1"\|+\|"P2"\|) dot H ("P1") + (\|"P2"\|) / (\|"P1"\|+\|"P2"\|) dot H("P2)"))$\
     $A dots$ Partitionierung des Datensatzes\
-    $"P1", "P2" dots$ Partitionen nach dem Split\
+    $\|"P1"\| dots $Anzahl der Datenpunkte in Partition 1\
+    $\|"P2"\| dots $Anzahl der Datenpunkte in Partition 2\
+    $(\|"P1"\| + \|"P2"\|) dots $Anzahl ALLER Datenpunkte\
 
 
 
@@ -310,10 +316,7 @@
   *Pruning (Beschneiden)*:\
   Reduziert Komplexität und Overfitting
 
-  *Ensemble-Methoden*:\
-  - Random Forests: viele Bäume, Voting\
-  - Boosting (z.B. AdaBoost): sequentielle Optimierung
-
+  #image("plots/entscheidungsbaum.png", width: 100%)
 ]
 
 #let pca = content-block(title: [Pricipal Component Analysis(PCA)], color: orange)[
@@ -326,10 +329,6 @@
   3. Eigenvektoren & -werte berechnen\
   4. Hauptkomponenten auswählen (größte Eigenwerte)\
   5. Projektion der Daten auf neue Achsen
-
-  *Mathematisch*:\
-  Gegeben Datenmatrix $X$, berechne $C = 1}{n} X^T X$\
-  Finde Eigenvektoren $v$ mit $C v = lambda v$
 
   *Eigenschaften*:\
   - Unüberwachtes Verfahren\
@@ -432,18 +431,20 @@
 
 #let boolsche_neuronale_netzwerke = content-block(title: [Boolesche Neuronale Netzwerke], color: lime)[
 
-  #image("plots/general_boolean_network.svg", width: 90%)
+  #image("plots/general_boolean_network.svg", width: 60%)
 
   #table(
-      columns: 4,
-      table.header(
-        "Funktion", "a", "b", "c",
-      ),
-
-        ($x_1 "and" x_2$), "-30", "20", "20",
-        $("not" x_1) "and (not" x_2)$, "10", "-20", "-20",
-        $x_1 "or" x_2$, "-10", "20", "20",
-
+    columns: 4,
+    table.header(
+      "Funktion",
+      "a",
+      "b",
+      "c",
     ),
+
+    ($x_1 "and" x_2$), "-30", "20", "20",
+    $("not" x_1) "and (not" x_2)$, "10", "-20", "-20",
+    $x_1 "or" x_2$, "-10", "20", "20",
+  )
 
 ]

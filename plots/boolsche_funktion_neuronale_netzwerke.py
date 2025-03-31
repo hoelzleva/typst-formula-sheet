@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-fig, ax = plt.subplots(figsize=(5, 4))
+fig, ax = plt.subplots(figsize=(4, 4))
 ax.set_xlim(0, 9)
 ax.set_ylim(0, 9)
 ax.axis("off")
