@@ -305,17 +305,6 @@
 
   - Gini-Index: $"Gini"(S) = 1 - sum p_i^2$
 
-  *Vorteile*:\
-  - Interpretierbar\
-  - Keine Skalierung notwendig
-
-  *Nachteile*:\
-  - Overfitting bei tiefen Bäumen\
-  - Instabil bei kleinen Datenänderungen
-
-  *Pruning (Beschneiden)*:\
-  Reduziert Komplexität und Overfitting
-
   #image("plots/entscheidungsbaum.png", width: 100%)
 ]
 
@@ -329,18 +318,6 @@
   3. Eigenvektoren & -werte berechnen\
   4. Hauptkomponenten auswählen (größte Eigenwerte)\
   5. Projektion der Daten auf neue Achsen
-
-  *Eigenschaften*:\
-  - Unüberwachtes Verfahren\
-  - Hauptachsen sind orthogonal\
-  - Keine Label nötig
-
-  *Anwendungen*:\
-  - Visualisierung\
-  - Vorverarbeitung für ML\
-  - Rauschreduktion
-
-
 ]
 
 #let reinforcement_learning = content-block(title: [Reinforcement Learning], color: maroon)[
@@ -356,7 +333,7 @@
   *"Wert von Zustand „S“ "*:\
   Einfach alle Werte der kommenden Felder, entlang der Policy $pi$ addieren.\
   $v_pi (S) = (-1)*16$
-  #image("plots/reward-graph.png", width: 100%)
+  #image("plots/reward-graph.png", width: 50%)
 
   *Grundidee*:\
   Ein Agent lernt durch Interaktion mit einer Umgebung, um Belohnungen zu maximieren.
@@ -373,15 +350,70 @@
   $Q(s,a) := Q(s,a) + alpha [r + gamma max_{a'} Q(s',a') - Q(s,a)]$
 
   *Strategien*:\
-  - Exploration vs. Exploitation\
-  - $ "var" epsilon$-greedy Policy
+  - Exploration vs. Exploitation (Ausbeutung)\
+  - $epsilon$-greedy Policy
 
-  *Anwendungen*:\
-  - Spiele (z.B. AlphaGo)\
-  - Robotik\
-  - Empfehlungssysteme
+  Gridworld: $space space space space space space space space space space space$ Zustände:
+  #let table1 = table(
+    columns: 3,
+    "-1", "-1", "-1",
+    "-1", "-1", "G",
+    "-1", "-1", "-1",
+  )
+  #let table2 = table(
+    columns: 3,
+    $S_11$, $S_12$, $S_13$,
+    $S_21$, $S_22$, $S_23 = G$,
+    $S_31$, $S_32$, $S_33$,
+  )
+  #divided(table1, table2)
+
+  *Bellman-Gleichung* (mit vereinfachung für deterministische Übergänge und gleichförmige Policy):\
+  $v^(k+1) (s) = sum_a pi (a|s) [R(s,a)+ v^k (s')]$
+
 
 ]
+#let reinforcement_learning2 = content-block(title: [RL Beispiele], color: maroon)[
+
+  *Policy Evaluation*:\
+  + Iteration:\
+    Für $S_11$ mit Initial-Value 0:
+    - Verfügbare Aktionen: rechts, unten
+      $pi ("rechts"|S_11)= pi ("unten"|S_11) = 50% = 0.5$
+    - Bei Aktion „rechts“: R (Reward) = -1, nächster Zustand = $S_12 "mit" v^0 (S_12)=0$\
+    - Bei Aktion "unten": R = -1, nächster Zustand = $S_21 "mit" v^0 (S_21)=0$\
+    - $v_1 (S_11) = "Erwartungswert" EE{R_(t+1) + v_0 (S_(t+1))}$\
+      $EE {R_(t+1)} = 0.5*(-1) + 0.5*(-1)$\
+      $EE {v_0 (S_(t+1))} = 0.5*v_0(S_21) + 0.5*v_0(S_12)$
+      $v_1 (S_11) = -1 + 0 = -1$
+      Analog berechnen wir für alle anderen Nicht-Zielzustände und erhalten überall -1\
+  - Für Zielzustand $G "ist" v^1 (G) = 0$
+
+  + Iteration:\
+    - Bei Aktion „rechts“: R = -1, nächster Zustand = $S_12 "mit" v^1 (S_12)=-1$\
+    - Bei Aktion "unten": R = -1, nächster Zustand = $S_21 "mit" v^1 (S_21)=-1$\
+    - ...
+  + Dasselbe (Iteration1, Iteration 2) für $S_12, S_13, dots$
+
+  *Value Iteration*:\
+  Bei Value Iteration wird in jedem Schritt der maximale Wert über alle möglichen Aktionen gewählt, anstatt über die Policy zu mitteln.
+  + Iteration:\
+    - $v_1 (S_11) = max_a [R_(t+1) + v_k_(S_(t+1))]$\
+      $= max_a [EE {R_(t+1)} + EE {v_0 (S_(t+1))}]$\
+      $= max_a [-1 + 0] = -1$\
+      $= -1$
+  + ...
+
+  *Monte-Carlo-Evaluation*:\
+  Bei der first-visit Monte-Carlo Methode schätzen wir den Wert eines Zustands als den durchschnittlichen Return (Summe der Rewards), der nach dem ersten Besuch dieses Zustands in jeder Episode beobachtet wurde.
+
+  Für Zustand S6:
+  - In T2: S6 wird gefolgt von (r=8, S4) -> (r=10, ST1), also Return = 8 + 10 = 18
+  - In T3: S6 wird gefolgt von (r=-2, S7) -> (r=2, S5) -> (r=20, ST2), also Return = -2 + 2 + 20 = 20
+  - S6 kommt in 2 Trajektorien vor, daher ist der geschätzte Wert $V ("S6") = (18+20)/2 = 19$
+
+]
+
 
 #let backpropagation_aufgabe = content-block(title: [Backpropagation Aufgabe (21)], color: teal)[
   *Gegeben*:\

@@ -246,7 +246,7 @@
     grid(
       columns: (1fr, auto, 1fr),
       gutter: 0pt,
-      pad(rest: 0pt, left), pad(rest: 0pt, right),
+      pad(rest: 0pt, left), pad(rest: 3pt, right),
     ),
   )
 }

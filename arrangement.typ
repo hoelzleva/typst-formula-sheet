@@ -37,6 +37,7 @@
             ratios: (1fr, auto),
 
             entscheidungsbaeume,
+            pca,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
@@ -74,11 +75,11 @@
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
-            pca,
+            reinforcement_learning,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
-            reinforcement_learning,
+            reinforcement_learning2,
           ),
           stack-section-vertical(
             ratios: (1fr, auto),
